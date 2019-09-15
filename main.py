@@ -107,4 +107,4 @@ for k in range(len(slave_list)):
 # TO DO LIST
 # 1. Filter by condition
 # 2. Formate choose option
-# 3. Seperator choose option (i.e. space, comma)
+## 3. Seperator choose option (i.e. space, comma)
