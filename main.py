@@ -6,22 +6,22 @@ from collections import namedtuple
 parser = argparse.ArgumentParser(description='Getting information to continue')
 # Filename
 parser.add_argument('filename', type=str,
-                    help='A required filename')
+                    help='A required filename i.e: 11.txt')
 
 # Columns
 parser.add_argument('--columns', type=str, nargs='?',
-                    help='A required columns to filter columns')
+                    help='A required columns to filter columns i.e --columns datetime,ip')
 
 # Filter
 parser.add_argument('--filter', type=str,
-                    help='A required condition for filter')
+                    help='A required condition for filter i.e --filter errorlevel>20')
 
 # Format
 parser.add_argument('--format', type=str,
-                    help='A required format')
+                    help='A required format i.e --format value')
 # Seperator
 parser.add_argument('--seperator', type=str,
-                    help='A required seperator')
+                    help='A required seperator i.e --seperator `;`')
 args = parser.parse_args()
 filename = args.filename
 columns = args.columns
@@ -35,7 +35,7 @@ seperator = args.seperator
 # Define of namedtuples as Data Structures for the excercise
 Master = namedtuple('Master', ['TYPE', 'N', 'DATETIME', 'ERRORLEVEL', 'DEVICEID', 'USERNAME', 'MESSAGE', 'MOBILEID'])
 Slave = namedtuple('Slave', ['TYPE', 'N', 'DATETIME', 'ERRORLEVEL', 'DEVICEID', 'ACTION', 'MESSAGE', 'IP'])
-# Define of maximum number of columns 
+# # # Define of maximum number of columns 
 n_cols = 8
 
 # A check for myself if I ran the program by debugging
@@ -83,28 +83,46 @@ for line in lines:
 #column_name = columns  # or use input('Please enter columns name you want to see, i.e. MobileID/Message: ')
 column_name = [value.strip() for value in columns.split(',', columns.count(','))]
 
-# Prints out of Master truple   
-print('M: TYPE | N | DATETIME | ERRORLEVEL | DEVICEID | USERNAME | MESSAGE | MOBILEID ')
+# Prints out of Master truple
+print('M',end =': ')   
+for j in range(len(column_name)):
+    print(column_name[j].upper(),end = ' | ')
+print('')
 for i in range(len(master_list)):
     print(str(i+1) + '. ',end = '')
     for l in range(len(column_name)):
-        try:
-            print(str(column_name[l]).upper() + ' = ' + str(master_list[i].__getattribute__(column_name[l].upper())), end =' ')
-        except AttributeError:
-            print('Your entered column does not exist, please enter a correct column i.e. `DeviceID` / `Message`.')
-            break
+        if format == 'value':
+            try:
+                print(str(column_name[l]).upper() + ' = ' + str(master_list[i].__getattribute__(column_name[l].upper())), end ='{0}'.format(seperator))
+            except AttributeError:
+                print('{0} = None'.format(column_name[l].upper()),end ='{0}'.format(seperator))
+                break
+        else:
+            try:
+                print(str(master_list[i].__getattribute__(column_name[l].upper())), end ='{0}'.format(seperator))
+            except AttributeError:
+                print('None',end = '{0}'.format(seperator))
     print('')
-# Prints out of Slave truple        
-print('S: TYPE | N | DATETIME | ERRORLEVEL | DEVICEID | ACTION | MESSAGE | IP')
+# Prints out of Slave truple  
+print('S',end=': ')      
+for j in range(len(column_name)):
+    print(column_name[j].upper(),end = ' | ')
+print('')
 for k in range(len(slave_list)):
     print(str(k+1) + '. ', end='')
     for l in range(len(column_name)):
-        print(str(column_name[l]).upper() + ' = ' +str(slave_list[k].__getattribute__(column_name[l].upper())), end =' ')
+        if format == 'value':
+            try:
+                print(str(column_name[l]).upper() + ' = ' +str(slave_list[k].__getattribute__(column_name[l].upper())), end ='{0}'.format(seperator))
+            except AttributeError:
+                print('{0} = None'.format(column_name[l].upper()),end='{0}'.format(seperator))
+        else:
+            try:
+                print(str(slave_list[k].__getattribute__(column_name[l].upper())), end ='{0}'.format(seperator))
+            except AttributeError:
+                print('None',end = '{0}'.format(seperator))
     print('')
-    # print(column_name + ' = ' + master_list[4].__getattribute__(column_name.upper())) # by column name if name no known in advance
 
-
+print('\nDONE!')
 # TO DO LIST
-# 1. Filter by condition
-# 2. Formate choose option
-## 3. Seperator choose option (i.e. space, comma)
+# 1. Filter by conditionpython main.py 11.txt --columns type,n,datetime,message,mobileid,ip --filter datetime>20 --format value2 --seperator ';'
