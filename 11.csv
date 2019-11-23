@@ -1,0 +1,12 @@
+M, 1, 14/08/2019 11:39, 4, xxxx, tal, Initialization of the system and loading
+M, 1, 14/08/2019 11:40, 100, xxxx, tal, Open Connection
+M, 1, 14/08/2019 11:40, 100, xxxx, tal, Close Connection and reboot
+S, 1, 14/08/2019 11:40, 6, xxxx, New User, We created the user in the systems
+S, 1, 14/08/2019 11:41, 3, xxxx, User logged in, User tal logged in
+M, 1, 14/08/2019 11:39, 4, xxxx, tal, Initialization of the system
+S, 1, 14/08/2019 11:40, 6, zzzz, New User, We created the user in the systems Yurii added it
+S, 1, 14/08/2019 11:41, 3, xxxx, User logged in, User tal logged in and accessed the system
+S, 1, 14/08/2019 11:42, 3, www, User logged in, User tal logged in ve odpaam added by Yurii
+M, 2, 14/08/2019 11:43, 100, yyy, yura, Message , 12345
+M, 2, 14/08/2019 11:44, 100, yyy, yura, Message, 1234
+S, 2, 14/08/2019 11:45, 200, yyy, Allocate IP from DHCP, DHCP worked, 10.0.0.1
