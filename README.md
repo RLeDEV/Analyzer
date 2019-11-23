@@ -1,5 +1,7 @@
 # Analyzer
 A program which filters log files into whatever stdin wants
+### An example of command line lunch command:
+`python main.py 11.csv --columns type,n,datetime,message,mobileid,ip --filter datetime>20 --format value2 --seperator ';'`
 
 # 25/08/2019
 - Uploaded file
@@ -7,5 +9,3 @@ A program which filters log files into whatever stdin wants
 
 # TODO List:
 1. filter by condition function
-2. formated choose function
-3. seperator choose option
