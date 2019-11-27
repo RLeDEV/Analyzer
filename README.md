@@ -1,4 +1,9 @@
 # Analyzer
+### Requirements:
+
+![requirements-python](https://img.shields.io/badge/requirements-python--3.6-brightgreen.svg)
+
+### General:
 A program which filters log files into whatever stdin wants
 
 ### An example of command line lunch command:
