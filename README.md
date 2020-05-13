@@ -34,10 +34,12 @@ e.g : `S;2;14/08/2019 11:45;DHCP worked;None;10.0.0.1;`
 
 ### Input / Output examples:
 1. - Input - `python main.py 11.csv --columns type,n,datetime,mobileid --filter n==1 --format table`
-   - Output - ![Image description](/src/output1.png)
+   - Output - 
+   ![Image description](/img/output1.png)
 
 2. - Input - `python main.py 11.csv --columns type,n,datetime,mobileid,deviceid --filter username==tal --format list`
-   - Output - ![Image description](/src/output2.png)
+   - Output - 
+   ![Image description](/img/output2.png)
 
 
 
