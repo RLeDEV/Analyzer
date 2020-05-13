@@ -76,9 +76,10 @@ class Analyzer:
     def getFile(self):
         try:
             self.file = open(self.filename, 'r')
-            print('File has successfully loaded')
+            print(self.filename + ' has successfully loaded')
+            print("-" * len(self.filename) + "-" * 24)
         except Exception:
-            print('Couldn\'t open ' + self.filePath + ', Please try again.')
+            print('Couldn\'t open ' + self.filename + ', Please try again.')
 
     def getMasterLines(self):
         self.masterLL = LinkedList()
@@ -102,7 +103,9 @@ class Analyzer:
                     # Adding to master's linked list.
                     self.masterLL.AtEnd(finalLine)
         # Prints the linked list by inserted format
-        if ''.join(self.format).upper() == "TABLE":
+        if self.masterLL.headval == None:
+            print('\nThere\'re no master lines using your filter.')
+        elif ''.join(self.format).upper() == "TABLE":
             self.convertToTable(self.masterCols, self.masterLL)
         elif ''.join(self.format).upper() == "LIST":
             print('Printing master list:')
@@ -131,7 +134,9 @@ class Analyzer:
                     finalLine = self.saveNesscaryParts(values, self.slaveCols)
                     self.slaveLL.AtEnd(finalLine)
         # Prints the linked list by inserted format
-        if ''.join(self.format).upper() == 'TABLE':
+        if self.slaveLL.headval == None:
+            print('\nThere\'re no slave lines using your filter.')
+        elif ''.join(self.format).upper() == 'TABLE':
             self.convertToTable(self.slaveCols, self.slaveLL)
         elif ''.join(self.format).upper() == 'LIST':
             print('Printing slave list:')
@@ -197,7 +202,9 @@ class Analyzer:
             upperCol = newFilter[0].upper()
             for idx, col in enumerate(mainCols):
                 if upperCol == col:
-                    if (line[idx] == newFilter[1]):
+                    if(len(line) - 1 < idx):
+                        return None
+                    elif (line[idx] == newFilter[1]):
                         return line
                     else:
                         return None
