@@ -1,0 +1,3 @@
+INFO:root:2020-05-14 09:01:06.066845 - New lunch with the following arguments: --columns - TYPE,USERNAME,N,IP,ERRORLEVEL --filter - ERRORLEVEL>=4 --format - TABLE
+DEBUG:root:2020-05-14 09:01:06.067139 - Analyzer method started..
+INFO:root:2020-05-14 09:01:06.078301 - Finished, running time was : 0.01523 seconds
