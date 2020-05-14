@@ -1,4 +1,4 @@
-# Analyzer
+# Analyzer CLI
 ### Requirements:
 
 ![requirements-python](https://img.shields.io/badge/requirements-python--3.6-brightgreen.svg)
@@ -7,7 +7,7 @@
 A program which filters log files into whatever stdin wants
 
 ### An example of command line lunch command:
-`python main.py 11.csv --columns type,n,datetime,message,mobileid,ip --filter datetime>20 --format table`
+`python main.py <filename> --columns <Columns to be displayed> --filter <Required> --format <table/list>`
 
 ### General Information:
 #### About the CSV:
