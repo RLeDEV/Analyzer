@@ -1,7 +1,13 @@
 import re
 import copy
-from beautifultable import BeautifulTable
+import logging
 import argparse
+from beautifultable import BeautifulTable
+from datetime import datetime
+import time
+
+LOG_FILENAME = "logfile.log"
+STARTED_TIME = time.time()
 
 # Command line inputs (argv)
 parser = argparse.ArgumentParser(description='Necessary information to run the program.')
@@ -63,6 +69,18 @@ class Analyzer:
         self.file = None
         self.fileLines = None
         self.upperCols()
+        self.writeLog()
+
+    def writeLog(self):
+        for handler in logging.root.handlers[:]:
+            logging.root.removeHandler(handler)
+        logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
+        logging.info(str(datetime.now()) + ' - New lunch with the following arguments: --columns - ' + args.columns.upper() + ' --filter - ' + self.filter[0].upper() + ' --format - ' + self.format.upper())
+        logging.debug(str(datetime.now()) + ' - Analyzer method started..')
+
+    def writeFinishLog(self):
+        finishedTime = round(time.time() - STARTED_TIME,5)
+        logging.info(str(datetime.now()) + ' - Finished, running time was : ' + str(finishedTime) + ' seconds')
 
     def upperCols(self):
         upperCols = []
@@ -256,4 +274,5 @@ if __name__ == '__main__':
     analyzer.getFile()
     analyzer.getMasterLines()
     analyzer.getSlaveLines()
+    analyzer.writeFinishLog()
 
